@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { MDBDataTable } from 'mdbreact';
 import FilltextService from '../services/filltext-service';
 import Spinner from '../spinner';
+import ErrorIndicator from '../error-indicator';
 
 
 export default class DatatablePage extends Component {
@@ -9,19 +10,33 @@ export default class DatatablePage extends Component {
   filltextService = new FilltextService();
 
   state = {
-    list: null
+    list: null,
+    loading: true,
+    error: false
+  };
+
+  onError = (err) => {
+    this.setState({
+      error: true,
+      loading: false
+    });
   };
 
   componentDidMount() {
     this.filltextService
       .getLiteData()
       .then((list) => {
-        this.setState({list});
+        this.setState({
+          list,
+          loading: false
+        });
       })
       .catch((err) => {
+        this.onError(err)
         console.error('Could not fetch', err);
       })
   };
+
 
   renderTab(arr) {
     return arr.map(({id, firstName, lastName, email, phone, city}) => {
@@ -42,8 +57,10 @@ export default class DatatablePage extends Component {
 
   render() {
 
-    const { list } = this.state
-    if (!list) {return <Spinner />}
+    const { list, loading, error } = this.state
+
+    if (loading) {return <Spinner />}
+    else if (error) {return <ErrorIndicator />}
 
     const renderList = {
 
