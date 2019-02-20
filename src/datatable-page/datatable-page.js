@@ -13,7 +13,7 @@ export default class DatatablePage extends Component {
   state = {
     list: null,
     loading: true,
-    error: false
+    error: false,
   };
 
   onError = (err) => {
@@ -24,20 +24,45 @@ export default class DatatablePage extends Component {
   };
 
   componentDidMount() {
+    this.loadLiteTable();
+  };
+
+
+  componentDidUpdate(prevProps) {
+    const { table } = this.props;
+
+    if (this.props.table !== prevProps.table) {
+      if (table === 'light') {
+        this.setState({loading: true})
+        this.loadLiteTable();
+      }else if (table === 'hard') {
+        this.setState({loading: true})
+        this.loadHardTable();
+      }
+    }
+  };
+
+  loadLiteTable() {
     this.filltextService
       .getLiteData()
       .then((list) => {
-        this.setState({
-          list,
+        this.setState({ list,
           loading: false
         });
       })
-      .catch((err) => {
-        this.onError(err)
-        console.error('Could not fetch', err);
-      })
+      .catch((err) => {this.onError(err)})
   };
 
+  loadHardTable() {
+    this.filltextService
+      .getHardData()
+      .then((list) => {
+        this.setState({ list,
+          loading: false
+        });
+      })
+      .catch((err) => {this.onError(err)});
+    };
 
   renderTab(arr) {
     return arr.map(({id, firstName, lastName, email, phone, city}) => {
@@ -74,7 +99,6 @@ export default class DatatablePage extends Component {
         {label: 'City',field: 'city',sort: 'asc',width: 100}
       ],
       rows: []
-
     };
 
     for (let i = 1; i < list.length; i++) {
@@ -83,7 +107,7 @@ export default class DatatablePage extends Component {
 
     return (
       <MDBDataTable striped responsive
-       small data={renderList}/>
+       small data={ renderList }/>
     );
   };
 };

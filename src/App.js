@@ -1,17 +1,37 @@
 import React, { Component } from "react";
 import { MDBCol, MDBContainer, MDBRow } from "mdbreact";
-import Header from './header';
+import Nav from './nav';
 import DatatablePage from './datatable-page';
-import "./index.css";
+import "./app.css";
 
 class App extends Component {
+
+  state = {
+    table: 'light'
+  };
+
+  onChangedHard = () => {
+    this.setState({
+      table: 'hard'
+    });
+  };
+
+  onChangedLight = () => {
+    this.setState({
+      table: 'light'
+    });
+  };
+
   render() {
     return (
       <MDBContainer>
-      <Header class="text-center"/>
+      <Nav
+        onChangedHard={this.onChangedHard}
+        onChangedLight={this.onChangedLight}/>
         <MDBRow center style={{ height: "100%" }}>
           <MDBCol sm="12" className="text-nowrap">
-            <DatatablePage />
+            <DatatablePage
+              table={ this.state.table }/>
           </MDBCol>
         </MDBRow>
       </MDBContainer>
