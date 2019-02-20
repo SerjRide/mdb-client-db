@@ -5,7 +5,6 @@ import Spinner from '../spinner';
 import ErrorIndicator from '../error-indicator';
 import './datatable-page.css';
 
-
 export default class DatatablePage extends Component {
 
   filltextService = new FilltextService();
@@ -26,7 +25,6 @@ export default class DatatablePage extends Component {
   componentDidMount() {
     this.loadLiteTable();
   };
-
 
   componentDidUpdate(prevProps) {
     const { table } = this.props;

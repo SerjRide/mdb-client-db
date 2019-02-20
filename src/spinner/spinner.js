@@ -1,13 +1,7 @@
 import React, { Component } from 'react';
 import './spinner.css';
 
-
-
 export default class Spinner extends Component {
-
-  componentWillUnmount(){
-    
-  };
 
   render() {
     return (
@@ -18,6 +12,4 @@ export default class Spinner extends Component {
       </div>
     );
   }
-
-
 };
