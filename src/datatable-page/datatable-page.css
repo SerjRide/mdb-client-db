@@ -1,0 +1,19 @@
+.col-sm-12.col-md-6 {
+  width: 160px;
+}
+
+.form-control.form-control-sm {
+  border: 0;
+  border-bottom: solid 1px #AAAAAA;
+  border-radius: 0;
+}
+
+th {
+  font-size: 10px!important;
+}
+
+@media screen and (max-width: 380px){
+  label {
+    width: 90px;
+  }
+}

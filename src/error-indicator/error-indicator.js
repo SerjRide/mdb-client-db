@@ -7,7 +7,7 @@ const ErrorIndicator = () => {
       <MDBAlert color="danger" >
       <h4>ERROR: 404</h4>
         Something has gone terribly wrong<br/>
-        Сервер времено недоступен
+        Страница не найдена или сервер времено недоступен
       </MDBAlert>
     </MDBContainer>
   );

@@ -8,9 +8,9 @@ class App extends Component {
   render() {
     return (
       <MDBContainer>
-      <Header />
+      <Header class="text-center"/>
         <MDBRow center style={{ height: "100%" }}>
-          <MDBCol sm="12" className="text-center">
+          <MDBCol sm="12" className="text-nowrap">
             <DatatablePage />
           </MDBCol>
         </MDBRow>

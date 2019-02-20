@@ -3,6 +3,7 @@ import { MDBDataTable } from 'mdbreact';
 import FilltextService from '../services/filltext-service';
 import Spinner from '../spinner';
 import ErrorIndicator from '../error-indicator';
+import './datatable-page.css';
 
 
 export default class DatatablePage extends Component {
@@ -81,7 +82,8 @@ export default class DatatablePage extends Component {
     };
 
     return (
-      <MDBDataTable striped hover data={renderList}/>
+      <MDBDataTable striped responsive
+       small data={renderList}/>
     );
   };
 };
